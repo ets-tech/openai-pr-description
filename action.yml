@@ -1,4 +1,4 @@
-name: 'Autofill PR Description with OpenAI'
+name: 'Autofill PR Description using OpenAI'
 description: "Autofill you pull request with a high quality description by harvesting the power of OpenAI and ChatGPT"
 inputs:
   github_token:
@@ -35,6 +35,10 @@ inputs:
     description: 'A sample of an ideal response based on the sample prompt'
     required: false
     default: ''
+  overwrite_existing_description:
+    description: 'Overwrite the existing description if it exists'
+    required: false
+    default: false
 
 runs:
   using: 'docker'

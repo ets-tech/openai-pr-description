@@ -1,4 +1,4 @@
-# `platisd/openai-pr-description` GitHub Action
+# `ankurgoel-apeejay/openai-pr-description` GitHub Action
 
 Autofill the description of your pull requests with the power of OpenAI!
 
@@ -6,7 +6,7 @@ Autofill the description of your pull requests with the power of OpenAI!
 
 ## What does it do?
 
-`platisd/openai-pr-description` is a GitHub Action that looks at the title as well as the contents
+`ankurgoel-apeejay/openai-pr-description` is a GitHub Action that looks at the title as well as the contents
 of your pull request and uses the [OpenAI API](https://openai.com/blog/openai-api) to automatically
 fill up the description of your pull request. Just like ChatGPT would! 🎉<br>
 The Action tries to focus on **why** the changes are needed rather on **what** they are,
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: platisd/openai-pr-description@master
+      - uses: ankurgoel-apeejay/openai-pr-description@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
@@ -52,6 +52,7 @@ jobs:
 | `temperature`     | Higher values will make the model more creative (0-2) | No       | `0.6`                      |
 | `sample_prompt`   | The prompt to use for giving context to the model     | No       | See `SAMPLE_PROMPT`        |
 | `sample_response` | A sample response for giving context to the model     | No       | See `GOOD_SAMPLE_RESPONSE` |
+| `overwrite_existing_description` | Overwrite the existing description if it exists     | No       | `false` |
 
 
 [OpenAI API key]: https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key
@@ -61,18 +62,18 @@ jobs:
 
 ## Demo
 
-* [platisd/smartcar_shield/pull/70](https://github.com/platisd/smartcar_shield/pull/70)
+* [ankurgoel-apeejay/smartcar_shield/pull/70](https://github.com/ankurgoel-apeejay/smartcar_shield/pull/70)
   * The GitHub Action explained why it is useful to add itself to a repository. 🤯
 
 ![openai-pr-description-screenshot](media/openai-pr-description-screenshot.png)
 
-* [platisd/cpp-command-parser/pull/16](https://github.com/platisd/cpp-command-parser/pull/16)
+* [ankurgoel-apeejay/cpp-command-parser/pull/16](https://github.com/ankurgoel-apeejay/cpp-command-parser/pull/16)
   * A decent explanation on why fetching `GoogleTest` during the `cmake` build instead of
   version controlling it, is a good idea. 🎯
 
 ![cpp-command-parser-screenshot](media/cpp-command-parser-screenshot.png)
 
-* [platisd/clang-tidy-pr-comments/pull/43](https://github.com/platisd/clang-tidy-pr-comments/pull/43)
+* [ankurgoel-apeejay/clang-tidy-pr-comments/pull/43](https://github.com/ankurgoel-apeejay/clang-tidy-pr-comments/pull/43)
   * I would improve it a bit, some parts are a bit off, but with small modifications it'd better
   than the PR description I originally had. 😅
 

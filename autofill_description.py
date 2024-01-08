@@ -81,6 +81,12 @@ def main():
         required=False,
         help="A comma-separated list of GitHub usernames that are allowed to trigger the action, empty or missing means all users are allowed",
     )
+    parser.add_argument(
+        "--overwrite-existing-description",
+        type=bool,
+        required=False,
+        help="Whether to overwrite an existing pull request description",
+    )
     args = parser.parse_args()
 
     github_api_url = args.github_api_url
@@ -97,6 +103,9 @@ def main():
     model_sample_prompt = os.environ.get("INPUT_MODEL_SAMPLE_PROMPT", SAMPLE_PROMPT)
     model_sample_response = os.environ.get(
         "INPUT_MODEL_SAMPLE_RESPONSE", GOOD_SAMPLE_RESPONSE
+    )
+    overwrite_existing_description = os.environ.get(
+        "INPUT_OVERWRITE_EXISTING_DESCRIPTION", "false"
     )
     authorization_header = {
         "Accept": "application/vnd.github.v3+json",
@@ -116,7 +125,7 @@ def main():
         return 1
     pull_request_data = json.loads(pull_request_result.text)
 
-    if pull_request_data["body"]:
+    if pull_request_data["body"] & overwrite_existing_description == "false":
         print("Pull request already has a description, skipping")
         return 0
 
