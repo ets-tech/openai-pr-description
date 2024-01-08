@@ -125,7 +125,7 @@ def main():
         return 1
     pull_request_data = json.loads(pull_request_result.text)
 
-    if pull_request_data["body"] & overwrite_existing_description == "false":
+    if pull_request_data["body"] and overwrite_existing_description == "false":
         print("Pull request already has a description, skipping")
         return 0
 
