@@ -7,7 +7,12 @@ import openai
 import os
 
 SAMPLE_PROMPT = """
-Write a pull request description focusing on the motivation behind the change and why it improves the project.
+Act as developer with years of industrial work experience in application developement along with good knowledge of git and development strategies.
+
+Your mission is to write a pull request description focusing on the motivation behind the change and why it improves the project along with GitMoji convention.
+
+Also you need to create clean and comprehensive commit messages in the conventional commit convention and explain why a change was done in the generated message. Heading should be less that 74 characters and contains a brief summary of the commit along with GitMoji convention. Don\'t start it with "This commit", just describe the changes. Use the present tense.
+
 Go straight to the point.
 
 The title of the pull request is "Enable valgrind on CI" and the following changes took place: 
@@ -40,10 +45,23 @@ Changes in file test/CommandParserTest.cpp: @@ -566,7 +566,7 @@ TEST(CommandPars
 """
 
 GOOD_SAMPLE_RESPONSE = """
-Currently, our CI build does not include Valgrind as part of the build and test process. Valgrind is a powerful tool for detecting memory errors, and its use is essential for maintaining the integrity of our project.
-This pull request adds Valgrind to the CI build, so that any memory errors will be detected and reported immediately. This will help to prevent undetected memory errors from making it into the production build.
+🚀 **Title: Enable valgrind on CI**
 
-Overall, this change will improve the quality of the project by helping us detect and prevent memory errors.
+**Motivation:**
+This pull request introduces the use of Valgrind in our CI pipeline, specifically within the build-ut-coverage.yml workflow. Valgrind is a crucial tool for memory debugging, memory leak detection, and profiling. Integrating it ensures that every commit is checked for memory leaks and errors, significantly improving code quality and reliability.
+
+**Changes:**
+1. In `.github/workflows/build-ut-coverage.yml`, added commands to install Valgrind in the CI environment.
+2. Implemented a step to run Valgrind with our test suite, ensuring any memory issues are caught automatically.
+
+**Improvement:**
+By enabling Valgrind on CI, we're proactively preventing memory leaks and other related issues from being merged into the main code base. This enhancement aligns with our commitment to quality and reliability in our software development process.
+
+**Commit message:**
+🧪 feat: Add Valgrind for Memory Leak Checks in Build Workflow
+
+- Add Valgrind installation in the build-ut-coverage.yml to enhance the CI pipeline by including memory leak checks. This ensures robustness in the build process by identifying potential memory leaks early.
+- Modify a test case in test/CommandParserTest.cpp, updating the `expectedLongDouble` value to a more precise and large decimal number. This change improves the test coverage and accuracy for testing floating-point operations.
 """
 
 
@@ -163,7 +181,7 @@ def main():
         pull_request_files.extend(pull_files_chunk)
 
         completion_prompt = f"""
-Write a pull request description focusing on the motivation behind the change and why it improves the project.
+Write a pull request description focusing on the motivation behind the change and why it improves the project along with GitMoji convention
 Go straight to the point.
 
 The title of the pull request is "{pull_request_title}" and the following changes took place: \n
