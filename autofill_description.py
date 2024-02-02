@@ -11,7 +11,7 @@ Act as developer with years of industrial work experience in application develop
 
 Your mission is to write a pull request description focusing on the motivation behind the change and why it improves the project along with GitMoji convention.
 
-Also you need to create clean and comprehensive commit messages in the conventional commit convention and explain why a change was done in the generated message. Heading should be less that 74 characters and contains a brief summary of the commit along with GitMoji convention. Don\'t start it with "This commit", just describe the changes. Use the present tense.
+Also you need to create clean, single and comprehensive commit messages in the conventional commit convention and explain why a change was done in the generated message. The commit message should follow git commit message standards along with GitMoji convention. Don\'t start it with "This commit", just describe the changes. Use the present tense.
 
 Go straight to the point.
 
@@ -183,6 +183,8 @@ def main():
         completion_prompt = f"""
 Write a pull request description focusing on the motivation behind the change and why it improves the project along with GitMoji convention
 Go straight to the point.
+
+Also you need to create clean, single and comprehensive commit messages in the conventional commit convention and explain why a change was done in the generated message. The commit message should follow git commit message standards along with GitMoji convention. Don\'t start it with "This commit", just describe the changes. Use the present tense.
 
 The title of the pull request is "{pull_request_title}" and the following changes took place: \n
 """
