@@ -156,7 +156,7 @@ def main():
             return 0
 
     pull_request_title = pull_request_data["title"]
-         pull_request_description = pull_request_data["description"]
+    pull_request_description = pull_request_data["description"]
 
     pull_request_files = []
     # Request a maximum of 10 pages (300 files)
