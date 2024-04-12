@@ -15,7 +15,7 @@ Also you need to create clean, single and comprehensive commit messages in the c
 
 Go straight to the point.
 
-The title of the pull request is "Enable valgrind on CI" and the following changes took place: 
+For your context the title of the pull request is "Enable valgrind on CI" and the following changes took place: 
 
 Changes in file .github/workflows/build-ut-coverage.yml: @@ -24,6 +24,7 @@ jobs:
          run: |
@@ -156,6 +156,7 @@ def main():
             return 0
 
     pull_request_title = pull_request_data["title"]
+         pull_request_description = pull_request_data["description"]
 
     pull_request_files = []
     # Request a maximum of 10 pages (300 files)
@@ -181,12 +182,15 @@ def main():
         pull_request_files.extend(pull_files_chunk)
 
         completion_prompt = f"""
-Write a pull request description focusing on the motivation behind the change and why it improves the project along with GitMoji convention
-Go straight to the point.
+Act as developer with years of industrial work experience in application developement along with good knowledge of git and development strategies.
+
+Your mission is to write a pull request description focusing on the motivation behind the change and why it improves the project along with GitMoji convention.
 
 Also you need to create clean, single and comprehensive commit messages in the conventional commit convention and explain why a change was done in the generated message. The commit message should follow git commit message standards along with GitMoji convention. Don\'t start it with "This commit", just describe the changes. Use the present tense.
 
-The title of the pull request is "{pull_request_title}" and the following changes took place: \n
+Go straight to the point.
+
+For your context the title of the pull request is "{pull_request_title}" and pull request description is "{pull_request_description}". The following changes took place: \n
 """
     for pull_request_file in pull_request_files:
         # Not all PR file metadata entries may contain a patch section
